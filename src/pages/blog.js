@@ -1,27 +1,38 @@
 import React from "react"
 import Layout from "../components/Layout"
+//import Images from "../examples/Images"
+import StyledHero from "../components/StyledHero"
 import { graphql } from "gatsby"
 const blog = ({ data }) => {
-  console.log(data)
   return (
     <Layout>
-      <div>
-        <h1>{data.site.siteMetadata.title}</h1>
-      </div>
+      <StyledHero img={data.blogBcg.childImageSharp.fluid}></StyledHero>
     </Layout>
   )
 }
 
 // Page Query
+// export const query = graphql`
+//   query {
+//     site {
+//       siteMetadata {
+//         title
+//         description
+//         author
+//       }
+//     }
+//   }
+// `
+export default blog
+
 export const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        description
-        author
+  {
+    blogBcg: file(relativePath: { eq: "blogBcg.jpeg" }) {
+      childImageSharp {
+        fluid(maxWidth: 4160, quality: 90) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
       }
     }
   }
 `
-export default blog
