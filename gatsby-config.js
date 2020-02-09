@@ -9,10 +9,14 @@ require("dotenv").config({
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: "Backroads",
-    description:
-      "Explore awesome worldwide tours & discover what makes each of them unique. Forget your daily routine & say yes to adventure",
-    author: "sushilparajuli",
+    title: "First Gatsby Project",
+    description: "First gatsby JS project",
+    author: "@sushilparajuli",
+    twitterUsername: "@iamsushilp",
+    // Inside the static folder
+    image: "/defaultBcg.jpeg",
+    // Without the ending slash (/)
+    siteUrl: "https://visitnepal-react-gatsby.netlify.com",
   },
   plugins: [
     {
@@ -30,10 +34,20 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-transition-link`,
+    `gatsby-plugin-sitemap`,
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://visitnepal-react-gatsby.netlify.com",
+        sitemap: "https://visitnepal-react-gatsby.netlify.com/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
   ],
 }
